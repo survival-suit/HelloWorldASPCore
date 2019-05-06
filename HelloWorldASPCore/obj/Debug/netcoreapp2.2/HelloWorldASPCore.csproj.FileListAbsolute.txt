@@ -1,0 +1,14 @@
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\bin\Debug\netcoreapp2.2\HelloWorldASPCore.deps.json
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\bin\Debug\netcoreapp2.2\HelloWorldASPCore.runtimeconfig.json
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\bin\Debug\netcoreapp2.2\HelloWorldASPCore.runtimeconfig.dev.json
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\bin\Debug\netcoreapp2.2\HelloWorldASPCore.dll
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.csprojAssemblyReference.cache
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.csproj.CoreCompileInputs.cache
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.RazorAssemblyInfo.cache
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.RazorAssemblyInfo.cs
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.AssemblyInfoInputs.cache
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.AssemblyInfo.cs
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.RazorTargetAssemblyInfo.cache
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\bin\Debug\netcoreapp2.2\HelloWorldASPCore.pdb
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.dll
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.pdb
