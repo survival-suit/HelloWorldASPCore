@@ -12,3 +12,5 @@ C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netco
 C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\bin\Debug\netcoreapp2.2\HelloWorldASPCore.pdb
 C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.dll
 C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.pdb
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\bin\Debug\netcoreapp2.2\HelloWorldASPCore.xml
+C:\Users\SalnikovAA\WatchApp\HelloWorldASPCore\HelloWorldASPCore\obj\Debug\netcoreapp2.2\HelloWorldASPCore.xml
