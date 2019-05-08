@@ -1,5 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+//using NLog;
 
 
 namespace HelloWorldASPCore.Controllers
@@ -8,14 +15,13 @@ namespace HelloWorldASPCore.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-
+        
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            //return new string[] { "value1", "value2" };
+            //return new string[] { "value1", "value2" };           
             return new string[] { "Hello World!" };
- 
 
         }
 
