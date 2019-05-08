@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using NLog.Web;
 
 namespace HelloWorldASPCore.Controllers
 {
@@ -13,7 +8,12 @@ namespace HelloWorldASPCore.Controllers
         protected internal string Hello()
         {   
             return "Hello World!!!";
-                        
+
+            var nlogConfig = new NLog.Config.LoggingConfiguration();
+            var nlogFileTarget = new NLog.Targets.FileTarget("logfile") { FileName = "myNLog.txt" };
+            nlogConfig.AddRuleForAllLevels(nlogFileTarget);
+            var logger = NLog.Web.NLogBuilder.ConfigureNLog(nlogConfig).GetCurrentClassLogger();
+
         }
     }
 }
