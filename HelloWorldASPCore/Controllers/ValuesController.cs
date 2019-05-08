@@ -15,11 +15,17 @@ namespace HelloWorldASPCore.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        
+        private readonly ILogger _logger;
+        public ValuesController(ILogger<ValuesController> logger)
+        {
+            _logger = logger;            
+
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            _logger.LogTrace("Hello World!");
             //return new string[] { "value1", "value2" };           
             return new string[] { "Hello World!" };
 
