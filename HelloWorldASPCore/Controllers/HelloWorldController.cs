@@ -29,7 +29,7 @@ namespace HelloWorldASPCore.Controllers
         {
             try
             {
-                  _logger.LogTrace("gtdt");
+                  _logger.LogTrace("Getdate");
                   DateTime utcDateTime = new DateTime();
                   utcDateTime = DateTime.UtcNow.AddHours(hours);
                   return utcDateTime.ToString("dd.MM.yyyy");
