@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HelloWorldASPCore.ResponseModels;
 using HelloWorldASPCore.RequestModels;
+using HelloWorldASPCore.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace HelloWorldASPCore.Controllers
 {
@@ -20,18 +22,18 @@ namespace HelloWorldASPCore.Controllers
         }
 
         // GET 
-        [HttpGet("{path},{folder}")]
-        public ActionResult<List<PathResponse>> GetPathContent(string path, bool folder)
+        [HttpGet]
+        public List<PathResponse> GetPathContent(PathRequest pathRequest)
         {
             try
             {
                 _logger.LogTrace("GetPathContent");
-                PathRequest pathIntro =  new PathRequest(path, folder);
-                var outList = new List<PathResponse>();
+                //PathRequest pathIntro =  new PathRequest(path, folder);
+                //var outList = new List<PathResponse>();
 
-                outList = pathIntro.ScanFolder();
+                //outList = pathIntro.ScanFolder();
+                return FolderServices.ScanFolderService(pathRequest.PathString, pathRequest.ShowFolder);
 
-                return outList;
             }
             catch (Exception ex)
             {

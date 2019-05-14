@@ -4,9 +4,21 @@ namespace HelloWorldASPCore.ResponseModels
 {
     public class PathResponse
     {
-        public string FullName { get; set; } //полное имя
-        public DateTime CreationTime { get; set; } //Дата создания
-        public DateTime LastWriteTime { get; set; } //Дата изменения
-        public long Length { get; set; } //Размер
+        /// <summary>
+        /// полное имя
+        /// </summary>
+        public string FullName { get; set; }
+        /// <summary>
+        /// Дата создания
+        /// </summary>
+        public DateTime CreationTime { get; set; }
+        /// <summary>
+        /// Дата изменения
+        /// </summary>
+        public DateTime LastWriteTime { get; set; }
+        /// <summary>
+        /// Размер
+        /// </summary>
+        public long Length { get; set; } 
     }
 }

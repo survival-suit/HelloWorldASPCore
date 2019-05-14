@@ -27,11 +27,15 @@ namespace HelloWorldASPCore.Services
             foreach (var s in files)
             {
                 FileInfo fileInf = new FileInfo(s);
-                PathResponse pathResp = new PathResponse();
-                pathResp.FullName = fileInf.FullName;
-                pathResp.CreationTime = fileInf.CreationTime;
-                pathResp.LastWriteTime = fileInf.LastWriteTime;
-                pathResp.Length = fileInf.Length;
+
+                //Использовать var и простой инициализатор
+                var pathResp = new PathResponse
+                {
+                    FullName = fileInf.FullName,
+                    CreationTime = fileInf.CreationTime,
+                    LastWriteTime = fileInf.LastWriteTime,
+                    Length = fileInf.Length
+                };
                 pathResplist.Add(pathResp);
             }
 
@@ -40,15 +44,20 @@ namespace HelloWorldASPCore.Services
             {
                 List<string> dirs = Directory.GetDirectories(pathString).ToList<string>();
 
-                foreach (string s in dirs)
+                //var
+                foreach (var s in dirs)
                 {
                     DirectoryInfo dirInfo = new DirectoryInfo(s);
-                    PathResponse pathResp = new PathResponse();
 
-                    pathResp.FullName = dirInfo.FullName;
-                    pathResp.CreationTime = dirInfo.CreationTime;
-                    pathResp.LastWriteTime = dirInfo.LastWriteTime;
-                    pathResp.Length = FolderSizeService(s);
+                    //Использовать var и простой инициализатор
+                    var pathResp = new PathResponse
+                    {
+                        FullName = dirInfo.FullName,
+                        CreationTime = dirInfo.CreationTime,
+                        LastWriteTime = dirInfo.LastWriteTime,
+                        Length = FolderSizeService(s)
+                    };
+
                     pathResplist.Add(pathResp);                    
                 }               
             }            
