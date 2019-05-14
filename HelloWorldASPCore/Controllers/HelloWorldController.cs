@@ -29,22 +29,16 @@ namespace HelloWorldASPCore.Controllers
         {
             try
             {
-                  _logger.LogTrace("Getdate");
-                  DateTime utcDateTime = new DateTime();
-                  utcDateTime = DateTime.UtcNow.AddHours(hours);
-                  return utcDateTime.ToString("dd.MM.yyyy");
+                  _logger.LogTrace("Getdate");                  
+                var utcDateTime = DateTime.UtcNow.AddHours(hours);
+                return utcDateTime.ToString("dd.MM.yyyy");
             }
             catch (Exception ex)
             {
                 //NLog: catch setup errors
                 _logger.LogError(ex, "Stopped program because of exception");
                 throw;
-            }
-            finally
-            {
-                // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
-                NLog.LogManager.Shutdown();
-            }
+            }           
         }
 
     }
