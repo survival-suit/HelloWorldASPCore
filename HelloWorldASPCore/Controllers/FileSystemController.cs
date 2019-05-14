@@ -23,7 +23,7 @@ namespace HelloWorldASPCore.Controllers
 
         // GET 
         [HttpGet]
-        public List<PathResponse> GetPathContent(PathRequest pathRequest)
+        public List<PathResponse> GetPathContent([FromQuery]PathRequest pathRequest)
         {
             try
             {
