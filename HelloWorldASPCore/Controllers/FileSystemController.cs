@@ -43,5 +43,23 @@ namespace HelloWorldASPCore.Controllers
             }            
         }
 
+        // POST     
+        //Для директорий приходится вводить даблслеш, с @ неработает..
+        [HttpPost]
+        public List<PathResponse> PostPathContent([FromBody]PathRequest pathRequest)
+        {
+            try
+            {
+                _logger.LogTrace("GetPathContent");             
+                return FolderServices.ScanFolderService(pathRequest.PathString, pathRequest.ShowFolder);
+            }
+            catch (Exception ex)
+            {
+                //NLog: catch setup errors
+                _logger.LogError(ex, "Stopped program because of exception");
+                throw;
+            }
+        }
+
     }    
 }
