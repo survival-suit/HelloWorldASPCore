@@ -1,15 +1,25 @@
 ﻿using System;
-using RequestTester.RequestModels;
+using RequestTester.Services;
+using Microsoft.Extensions.Logging;
 
 namespace RequestTester
 {
     class Program
     {
-        static void Main(string[] args)
+        private readonly ILogger _logger;
+
+        public Program(ILogger<Program> logger)
         {
+            _logger = logger;
+        }
+
+        public static void Main(string[] args)
+        {
+            //_logger.LogTrace("MainStart");
             Console.ReadKey();
-            RequestSend.PostRequestAsync();
+            RequestSendService.PostRequestAsync();
             Console.ReadKey();
+            //_logger.LogTrace("MainTerminate");
         }
     }
 }
