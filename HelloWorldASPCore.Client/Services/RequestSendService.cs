@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
-using System.IO;
+using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Threading.Tasks;
-using NLog.Web.AspNetCore;
-using Microsoft.Extensions.Logging;
+using System.IO;
 
-namespace RequestTester.Services
+namespace HelloWorldASPCore.Client.Services
 {
     public class RequestSendService
     {
@@ -26,7 +26,7 @@ namespace RequestTester.Services
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:58195/api/FileSystem");
                 request.Method = "POST";
                 request.ContentType = "application/json-patch+json";
-                request.Accept = "text/plain";               
+                request.Accept = "text/plain";
                 request.ContentLength = byteArray.Length;
 
                 using (Stream dataStream = request.GetRequestStream())
@@ -43,7 +43,7 @@ namespace RequestTester.Services
                     }
                 }
                 response.Close();
-                Console.WriteLine("End Request");                
+                Console.WriteLine("End Request");
             }
             catch (Exception ex)
             {

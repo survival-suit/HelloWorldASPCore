@@ -1,8 +1,8 @@
 ﻿using System;
-using RequestTester.Services;
 using Microsoft.Extensions.Logging;
+using HelloWorldASPCore.Client.Services;
 
-namespace RequestTester
+namespace HelloWorldASPCore.Client
 {
     class Program
     {
@@ -12,14 +12,11 @@ namespace RequestTester
         {
             _logger = logger;
         }
-
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            //_logger.LogTrace("MainStart");
             Console.ReadKey();
             RequestSendService.PostRequestAsync();
             Console.ReadKey();
-            //_logger.LogTrace("MainTerminate");
         }
     }
 }
