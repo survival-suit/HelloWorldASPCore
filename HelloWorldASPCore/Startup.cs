@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Rewrite;
+using HelloWorldASPCore.Midleware;
 
 namespace HelloWorldASPCore
 {
@@ -62,6 +63,7 @@ namespace HelloWorldASPCore
             app.UseRewriter(option);
             app.UseMvc();
             app.UseSwagger();
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             //app.UseMiddleware<ErrorHandlingMiddleware>();
 
