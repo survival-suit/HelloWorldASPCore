@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using HelloWorldASPCore.ResponseModels;
+using HelloWorldASPCore.Common.ResponseModels;
 
 namespace HelloWorldASPCore.Services
 {

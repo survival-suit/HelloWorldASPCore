@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HelloWorldASPCore.ResponseModels
+namespace HelloWorldASPCore.Common.ResponseModels
 {
     public class PathResponse
     {

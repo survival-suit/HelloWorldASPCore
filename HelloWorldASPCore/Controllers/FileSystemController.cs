@@ -3,10 +3,11 @@ using System.IO;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using HelloWorldASPCore.ResponseModels;
-using HelloWorldASPCore.RequestModels;
 using HelloWorldASPCore.Services;
 using Microsoft.AspNetCore.Http;
+using HelloWorldASPCore.Common.RequestModels;
+using HelloWorldASPCore.Common.ResponseModels;
+
 
 namespace HelloWorldASPCore.Controllers
 {
