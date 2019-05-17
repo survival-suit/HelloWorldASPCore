@@ -56,6 +56,8 @@ namespace HelloWorldASPCore
                 //app.UseHsts();
             }
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
+
             //app.UseHttpsRedirection();
             //Redirect for swagger 
             var option = new RewriteOptions();
@@ -63,7 +65,7 @@ namespace HelloWorldASPCore
             app.UseRewriter(option);
             app.UseMvc();
             app.UseSwagger();
-            app.UseMiddleware<ErrorHandlingMiddleware>();
+
 
             app.UseSwaggerUI(c =>
             {
