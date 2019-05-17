@@ -65,8 +65,6 @@ namespace HelloWorldASPCore
             app.UseSwagger();
             app.UseMiddleware<ErrorHandlingMiddleware>();
 
-            //app.UseMiddleware<ErrorHandlingMiddleware>();
-
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "HelloWorldASPCore V1");

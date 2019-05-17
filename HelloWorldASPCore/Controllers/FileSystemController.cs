@@ -26,22 +26,22 @@ namespace HelloWorldASPCore.Controllers
         [HttpGet]
         public List<PathResponse> GetPathContent([FromQuery]PathRequest pathRequest)
         {
-            try
-            {
+            //try
+            //{
                 _logger.LogTrace("GetPathContent");
-                //PathRequest pathIntro =  new PathRequest(path, folder);
-                //var outList = new List<PathResponse>();
+                ////PathRequest pathIntro =  new PathRequest(path, folder);
+                ////var outList = new List<PathResponse>();
 
-                //outList = pathIntro.ScanFolder();
+                ////outList = pathIntro.ScanFolder();
                 return FolderServices.ScanFolderService(pathRequest.PathString, pathRequest.ShowFolder);
 
-            }
-            catch (Exception ex)
-            {
-                //NLog: catch setup errors
-                _logger.LogError(ex, "Stopped program because of exception");
-                throw;
-            }            
+            //}
+            //catch (Exception ex)
+            //{
+                ////NLog: catch setup errors
+                //_logger.LogError(ex, "Stopped program because of exception");
+                //throw;
+            //}            
         }
 
         // POST     
@@ -49,17 +49,17 @@ namespace HelloWorldASPCore.Controllers
         [HttpPost]
         public List<PathResponse> PostPathContent([FromBody]PathRequest pathRequest)
         {
-            try
-            {
+            //try
+            //{
                 _logger.LogTrace("GetPathContent");             
                 return FolderServices.ScanFolderService(pathRequest.PathString, pathRequest.ShowFolder);
-            }
-            catch (Exception ex)
-            {
-                //NLog: catch setup errors
-                _logger.LogError(ex, "Stopped program because of exception");
-                throw;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+                ////NLog: catch setup errors
+                //_logger.LogError(ex, "Stopped program because of exception");
+                //throw;
+            //}
         }
 
     }    
