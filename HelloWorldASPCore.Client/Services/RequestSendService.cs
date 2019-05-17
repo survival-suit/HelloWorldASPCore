@@ -1,28 +1,35 @@
 ﻿using System;
 using System.Text;
 using System.Net;
-using System.Threading.Tasks;
 using System.IO;
-using System.Collections.Specialized;
-
+using HelloWorldASPCore.Common.RequestModels;
+using HelloWorldASPCore.Common.ResponseModels;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 namespace HelloWorldASPCore.Client.Services
 {
     public class RequestSendService
     {
         //public static async Task PostRequestAsync()
-        public static void PostRequestAsync()
+        public static void PostRequestSync(int val)
         {
-            
-                try
-                {                
-                    byte[] byteArray = Encoding.UTF8.GetBytes("{ \"pathString\": \"C:\\\\BOTS\", \"showFolder\": true}");
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:58195/api/FileSystem");
-                //request.Proxy = new WebProxy();
-                if (request.Proxy != null)
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:58195/api/FileSystem"); 
+
+                if (val == 1)
+                {
+                    //объявляем экземпляр класса с инициализацией
+                    var pathRequest = new PathRequest()
                     {
-                        request.Proxy = null;
-                    }
-                request.Method = "POST";
+                        PathString = "C:\\BOTS",
+                        ShowFolder = true
+                    };                    
+
+                    var message = JsonConvert.SerializeObject(pathRequest);
+                    byte[] byteArray = Encoding.UTF8.GetBytes(message);
+                    request.Proxy = null;
+                    request.Method = "POST";
                     request.ContentType = "application/json-patch+json";
                     request.Accept = "text/plain";
                     request.ContentLength = byteArray.Length;
@@ -32,9 +39,40 @@ namespace HelloWorldASPCore.Client.Services
                         dataStream.Write(byteArray, 0, byteArray.Length);
                     }
 
-                //HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync();
-                HttpWebResponse response = (HttpWebResponse) request.GetResponse();
-                using (Stream stream = response.GetResponseStream())
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    using (Stream stream = response.GetResponseStream())
+                    {
+                        using (StreamReader reader = new StreamReader(stream))
+                        {
+                            List<PathResponse> pathRespList= JsonConvert.DeserializeObject<List<PathResponse>>(reader.ReadToEnd());
+                            foreach (var obj in pathRespList)
+                            {
+                                Console.WriteLine(JsonConvert.SerializeObject(obj));
+                                Console.WriteLine("----------------");
+                            }
+                        }                                                                       
+                    }
+                    response.Close();
+                    Console.WriteLine("----------------");
+                    Console.WriteLine("End Request");
+                }
+                else if (val == 2)
+                {
+                    string message = "{ \"pathString\": \"C:\\\\BOTS\", \"showFolder\": true}";                    
+                    byte[] byteArray = Encoding.UTF8.GetBytes(message);
+                    request.Proxy = null;
+                    request.Method = "POST";
+                    request.ContentType = "application/json-patch+json";
+                    request.Accept = "text/plain";
+                    request.ContentLength = byteArray.Length;
+
+                    using (Stream dataStream = request.GetRequestStream())
+                    {
+                        dataStream.Write(byteArray, 0, byteArray.Length);
+                    }
+
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    using (Stream stream = response.GetResponseStream())
                     {
                         using (StreamReader reader = new StreamReader(stream))
                         {
@@ -44,11 +82,11 @@ namespace HelloWorldASPCore.Client.Services
                     response.Close();
                     Console.WriteLine("End Request");
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
-                
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }            
+        }
     }
 }
