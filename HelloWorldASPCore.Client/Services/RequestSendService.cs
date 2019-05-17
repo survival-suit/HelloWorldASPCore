@@ -16,8 +16,13 @@ namespace HelloWorldASPCore.Client.Services
                 try
                 {                
                     byte[] byteArray = Encoding.UTF8.GetBytes("{ \"pathString\": \"C:\\\\BOTS\", \"showFolder\": true}");
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:58195/api/FileSystem");                
-                    request.Method = "POST";
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:58195/api/FileSystem");
+                //request.Proxy = new WebProxy();
+                if (request.Proxy != null)
+                    {
+                        request.Proxy = null;
+                    }
+                request.Method = "POST";
                     request.ContentType = "application/json-patch+json";
                     request.Accept = "text/plain";
                     request.ContentLength = byteArray.Length;
