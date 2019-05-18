@@ -4,7 +4,7 @@ using System.Net;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using NLog;
-using HelloWorldASPCore.ResponseModels;
+using HelloWorldASPCore.Common.ResponseModels;
 
 
 namespace HelloWorldASPCore.Midleware

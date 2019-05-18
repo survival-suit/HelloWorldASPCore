@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using HelloWorldASPCore.Common.ResponseModels;
+using System;
 
 namespace HelloWorldASPCore.Services
 {
@@ -20,48 +21,48 @@ namespace HelloWorldASPCore.Services
         }
 
         public static List<PathResponse> ScanFolderService(string pathString, bool showFolder)
-        {
-            List<string> files = Directory.GetFiles(pathString).ToList<string>();
-            var pathResplist = new List<PathResponse>();
+        {            
+                List<string> files = Directory.GetFiles(pathString).ToList<string>();
+                var pathResplist = new List<PathResponse>();
 
-            foreach (var s in files)
-            {
-                FileInfo fileInf = new FileInfo(s);
-
-                //Использовать var и простой инициализатор
-                var pathResp = new PathResponse
+                foreach (var s in files)
                 {
-                    FullName = fileInf.FullName,
-                    CreationTime = fileInf.CreationTime,
-                    LastWriteTime = fileInf.LastWriteTime,
-                    Length = fileInf.Length
-                };
-                pathResplist.Add(pathResp);
-            }
-
-            //если пользователь отметил и папки
-            if (showFolder)
-            {
-                List<string> dirs = Directory.GetDirectories(pathString).ToList<string>();
-
-                //var
-                foreach (var s in dirs)
-                {
-                    DirectoryInfo dirInfo = new DirectoryInfo(s);
+                    FileInfo fileInf = new FileInfo(s);
 
                     //Использовать var и простой инициализатор
                     var pathResp = new PathResponse
                     {
-                        FullName = dirInfo.FullName,
-                        CreationTime = dirInfo.CreationTime,
-                        LastWriteTime = dirInfo.LastWriteTime,
-                        Length = FolderSizeService(s)
+                        FullName = fileInf.FullName,
+                        CreationTime = fileInf.CreationTime,
+                        LastWriteTime = fileInf.LastWriteTime,
+                        Length = fileInf.Length
                     };
+                    pathResplist.Add(pathResp);
+                }
 
-                    pathResplist.Add(pathResp);                    
-                }               
-            }            
-            return pathResplist;            
+                //если пользователь отметил и папки
+                if (showFolder)
+                {
+                    List<string> dirs = Directory.GetDirectories(pathString).ToList<string>();
+
+                    //var
+                    foreach (var s in dirs)
+                    {
+                        DirectoryInfo dirInfo = new DirectoryInfo(s);
+
+                        //Использовать var и простой инициализатор
+                        var pathResp = new PathResponse
+                        {
+                            FullName = dirInfo.FullName,
+                            CreationTime = dirInfo.CreationTime,
+                            LastWriteTime = dirInfo.LastWriteTime,
+                            Length = FolderSizeService(s)
+                        };
+
+                        pathResplist.Add(pathResp);
+                    }
+                }
+                return pathResplist;            
         }
     }
 }

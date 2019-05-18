@@ -40,19 +40,42 @@ namespace HelloWorldASPCore.Client.Services
                     }
 
                     HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    /*
                     using (Stream stream = response.GetResponseStream())
                     {
                         using (StreamReader reader = new StreamReader(stream))
                         {
-                            List<PathResponse> pathRespList= JsonConvert.DeserializeObject<List<PathResponse>>(reader.ReadToEnd());
+                            List<PathResponse> pathRespList = JsonConvert.DeserializeObject<List<PathResponse>>(reader.ReadToEnd());                                
                             foreach (var obj in pathRespList)
                             {
                                 Console.WriteLine(JsonConvert.SerializeObject(obj));
                                 Console.WriteLine("----------------");
-                            }
+                            }                           
                         }                                                                       
-                    }
-                    response.Close();
+                    } */  
+                    
+                    using (Stream stream = response.GetResponseStream())
+                    {
+                        using (StreamReader reader = new StreamReader(stream))
+                        {
+                            int statusCode = (int)response.StatusCode;
+                            if (statusCode == 200)
+                            {
+                                List<PathResponse> pathRespList = JsonConvert.DeserializeObject<List<PathResponse>>(reader.ReadToEnd());
+                                foreach (var obj in pathRespList)
+                                {
+                                    Console.WriteLine(JsonConvert.SerializeObject(obj));
+                                    Console.WriteLine("----------------");
+                                }
+                            }
+                            else if (statusCode == 500)
+                            {
+                                HttpResponseException httpRespExept = JsonConvert.DeserializeObject<HttpResponseException>(reader.ReadToEnd());
+                                Console.WriteLine(JsonConvert.SerializeObject(httpRespExept));
+                                Console.WriteLine("----------------");
+                            }
+                        }
+                    }  
                     Console.WriteLine("----------------");
                     Console.WriteLine("End Request");
                 }
