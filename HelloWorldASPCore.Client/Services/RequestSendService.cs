@@ -20,12 +20,13 @@ namespace HelloWorldASPCore.Client.Services
                 if (val == 1)
                 {
                     //объявляем экземпляр класса с инициализацией
+                    
                     var pathRequest = new PathRequest()
                     {
-                        PathString = "C:\\BOTS",
+                        PathString = null,//"C:\\BOTS",
                         ShowFolder = true
-                    };                    
-
+                    };
+                    
                     var message = JsonConvert.SerializeObject(pathRequest);
                     byte[] byteArray = Encoding.UTF8.GetBytes(message);
                     request.Proxy = null;
@@ -39,29 +40,23 @@ namespace HelloWorldASPCore.Client.Services
                         dataStream.Write(byteArray, 0, byteArray.Length);
                     }
 
-                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                    /*
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();                  
+                   
                     using (Stream stream = response.GetResponseStream())
                     {
                         using (StreamReader reader = new StreamReader(stream))
                         {
-                            List<PathResponse> pathRespList = JsonConvert.DeserializeObject<List<PathResponse>>(reader.ReadToEnd());                                
+                            List<PathResponse> pathRespList = JsonConvert.DeserializeObject<List<PathResponse>>(reader.ReadToEnd());//stream.ToString());
                             foreach (var obj in pathRespList)
                             {
                                 Console.WriteLine(JsonConvert.SerializeObject(obj));
                                 Console.WriteLine("----------------");
-                            }                           
-                        }                                                                       
-                    } */  
-                    
-                    using (Stream stream = response.GetResponseStream())
-                    {
-                        using (StreamReader reader = new StreamReader(stream))
-                        {
+                            }
+                            /*
                             int statusCode = (int)response.StatusCode;
                             if (statusCode == 200)
                             {
-                                List<PathResponse> pathRespList = JsonConvert.DeserializeObject<List<PathResponse>>(reader.ReadToEnd());
+                                List<PathResponse> pathRespList = JsonConvert.DeserializeObject<List<PathResponse>>(reader.ReadToEnd());//stream.ToString());
                                 foreach (var obj in pathRespList)
                                 {
                                     Console.WriteLine(JsonConvert.SerializeObject(obj));
@@ -69,15 +64,17 @@ namespace HelloWorldASPCore.Client.Services
                                 }
                             }
                             else if (statusCode == 500)
-                            {
-                                HttpResponseException httpRespExept = JsonConvert.DeserializeObject<HttpResponseException>(reader.ReadToEnd());
+                            {                                
+                                HttpResponseException httpRespExept = JsonConvert.DeserializeObject<HttpResponseException>(reader.ReadToEnd());//stream.ToString());
                                 Console.WriteLine(JsonConvert.SerializeObject(httpRespExept));
                                 Console.WriteLine("----------------");
                             }
+                            */
                         }
                     }  
                     Console.WriteLine("----------------");
                     Console.WriteLine("End Request");
+                    
                 }
                 else if (val == 2)
                 {
@@ -106,9 +103,12 @@ namespace HelloWorldASPCore.Client.Services
                     Console.WriteLine("End Request");
                 }
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
-                Console.WriteLine(ex);
+                var respSttream = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
+                HttpResponseException httpRespExept = JsonConvert.DeserializeObject<HttpResponseException>(respSttream);//stream.ToString());
+                Console.WriteLine(JsonConvert.SerializeObject(httpRespExept));
+                Console.WriteLine("----------------");
             }            
         }
     }

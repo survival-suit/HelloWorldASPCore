@@ -21,9 +21,10 @@ namespace HelloWorldASPCore.Services
         }
 
         public static List<PathResponse> ScanFolderService(string pathString, bool showFolder)
-        {            
+        {
+            //if (pathString != null && pathString != "")            
                 List<string> files = Directory.GetFiles(pathString).ToList<string>();
-                var pathResplist = new List<PathResponse>();
+                var pathRespList = new List<PathResponse>();
 
                 foreach (var s in files)
                 {
@@ -37,7 +38,7 @@ namespace HelloWorldASPCore.Services
                         LastWriteTime = fileInf.LastWriteTime,
                         Length = fileInf.Length
                     };
-                    pathResplist.Add(pathResp);
+                    pathRespList.Add(pathResp);
                 }
 
                 //если пользователь отметил и папки
@@ -59,10 +60,10 @@ namespace HelloWorldASPCore.Services
                             Length = FolderSizeService(s)
                         };
 
-                        pathResplist.Add(pathResp);
+                        pathRespList.Add(pathResp);
                     }
                 }
-                return pathResplist;            
+                return pathRespList;              
         }
     }
 }
