@@ -23,7 +23,7 @@ namespace HelloWorldASPCore.Client.Services
                     
                     var pathRequest = new PathRequest()
                     {
-                        PathString = null,//"C:\\BOTS",
+                        PathString = "C:\\BOTS",//null,
                         ShowFolder = true
                     };
                     

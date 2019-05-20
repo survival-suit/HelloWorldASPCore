@@ -19,6 +19,10 @@ namespace HelloWorldASPCore.Common.ResponseModels
         /// <summary>
         /// Размер
         /// </summary>
-        public long Length { get; set; } 
+        public long Length { get; set; }
+        /// <summary>
+        /// Тип объекта
+        /// </summary>
+        public bool IsDirectory { get; set; }
     }
 }

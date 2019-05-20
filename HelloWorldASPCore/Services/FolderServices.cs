@@ -36,7 +36,8 @@ namespace HelloWorldASPCore.Services
                         FullName = fileInf.FullName,
                         CreationTime = fileInf.CreationTime,
                         LastWriteTime = fileInf.LastWriteTime,
-                        Length = fileInf.Length
+                        Length = fileInf.Length,
+                        IsDirectory = false
                     };
                     pathRespList.Add(pathResp);
                 }
@@ -57,7 +58,8 @@ namespace HelloWorldASPCore.Services
                             FullName = dirInfo.FullName,
                             CreationTime = dirInfo.CreationTime,
                             LastWriteTime = dirInfo.LastWriteTime,
-                            Length = FolderSizeService(s)
+                            Length = FolderSizeService(s),
+                            IsDirectory = true
                         };
 
                         pathRespList.Add(pathResp);
