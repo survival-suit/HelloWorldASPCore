@@ -21,15 +21,13 @@ namespace HelloWorldASPCore.Services
         }
 
         public static List<PathResponse> ScanFolderService(string pathString, bool showFolder)
-        {
-            //if (pathString != null && pathString != "")            
-                List<string> files = Directory.GetFiles(pathString).ToList<string>();
+        {          
+                List<string> files = Directory.GetFiles(pathString).ToList();
                 var pathRespList = new List<PathResponse>();
 
                 foreach (var s in files)
                 {
                     FileInfo fileInf = new FileInfo(s);
-
                     //Использовать var и простой инициализатор
                     var pathResp = new PathResponse
                     {
@@ -45,13 +43,10 @@ namespace HelloWorldASPCore.Services
                 //если пользователь отметил и папки
                 if (showFolder)
                 {
-                    List<string> dirs = Directory.GetDirectories(pathString).ToList<string>();
-
-                    //var
+                    List<string> dirs = Directory.GetDirectories(pathString).ToList();
                     foreach (var s in dirs)
                     {
                         DirectoryInfo dirInfo = new DirectoryInfo(s);
-
                         //Использовать var и простой инициализатор
                         var pathResp = new PathResponse
                         {
@@ -61,7 +56,6 @@ namespace HelloWorldASPCore.Services
                             Length = FolderSizeService(s),
                             IsDirectory = true
                         };
-
                         pathRespList.Add(pathResp);
                     }
                 }

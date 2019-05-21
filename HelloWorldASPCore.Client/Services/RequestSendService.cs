@@ -19,8 +19,7 @@ namespace HelloWorldASPCore.Client.Services
 
                 if (val == 1)
                 {
-                    //объявляем экземпляр класса с инициализацией
-                    
+                    //объявляем экземпляр класса с инициализацией                    
                     var pathRequest = new PathRequest()
                     {
                         PathString = "C:\\BOTS",//null,
@@ -32,7 +31,7 @@ namespace HelloWorldASPCore.Client.Services
                     request.Proxy = null;
                     request.Method = "POST";
                     request.ContentType = "application/json-patch+json";
-                    request.Accept = "text/plain";
+                    //request.Accept = "text/plain";
                     request.ContentLength = byteArray.Length;
 
                     using (Stream dataStream = request.GetRequestStream())
@@ -49,8 +48,7 @@ namespace HelloWorldASPCore.Client.Services
                             List<PathResponse> pathRespList = JsonConvert.DeserializeObject<List<PathResponse>>(reader.ReadToEnd());//stream.ToString());
                             foreach (var obj in pathRespList)
                             {
-                                Console.WriteLine(JsonConvert.SerializeObject(obj));
-                                Console.WriteLine("----------------");
+                                Console.WriteLine(JsonConvert.SerializeObject(obj));                                
                             }
                             /*
                             int statusCode = (int)response.StatusCode;
@@ -72,7 +70,6 @@ namespace HelloWorldASPCore.Client.Services
                             */
                         }
                     }  
-                    Console.WriteLine("----------------");
                     Console.WriteLine("End Request");
                     
                 }
@@ -103,12 +100,11 @@ namespace HelloWorldASPCore.Client.Services
                     Console.WriteLine("End Request");
                 }
             }
-            catch (WebException ex)
+            catch (WebException wex)
             {
-                var respSttream = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
-                HttpResponseException httpRespExept = JsonConvert.DeserializeObject<HttpResponseException>(respSttream);//stream.ToString());
-                Console.WriteLine(JsonConvert.SerializeObject(httpRespExept));
-                Console.WriteLine("----------------");
+                var respStream = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                HttpResponseException httpRespExept = JsonConvert.DeserializeObject<HttpResponseException>(respStream);//stream.ToString());
+                Console.WriteLine(JsonConvert.SerializeObject(httpRespExept));                
             }            
         }
     }
