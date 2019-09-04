@@ -51,7 +51,7 @@ namespace HelloWorldASPCore.Controllers
         {
             //try
             //{
-                _logger.LogTrace("GetPathContent");             
+                _logger.LogTrace("PostPathContent");             
                 return FolderServices.ScanFolderService(pathRequest.PathString, pathRequest.ShowFolder);
             //}
             //catch (Exception ex)

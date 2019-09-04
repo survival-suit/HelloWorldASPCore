@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HelloWorldASPCore.Common.UserModels
 {
-    class UserModel
+    public class UserModel
 
     {
         /// <summary>
