@@ -9,6 +9,7 @@ using System.Reflection;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Rewrite;
 using HelloWorldASPCore.Midleware;
+using HelloWorldASPCore.Common.Models;
 
 namespace HelloWorldASPCore
 {
@@ -25,7 +26,7 @@ namespace HelloWorldASPCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddSingleton<DataBaseMemory>(); //
             var assemblyVersion = Assembly.GetAssembly(typeof(Startup)).GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
             services.AddSwaggerGen(c =>
             {

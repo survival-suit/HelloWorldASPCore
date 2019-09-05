@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HelloWorldASPCore.Common.UserModels
+namespace HelloWorldASPCore.Common.Models
 {
     public class UserModel
 
     {
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public Guid UserGuid { get; set; }
+
         /// <summary>
         /// имя
         /// </summary>
