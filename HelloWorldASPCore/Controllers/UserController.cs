@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HelloWorldASPCore.Common.Models;
-using HelloWorldASPCore.Services;
+using HelloWorldASPCore.Common.RequestModels;
 using System.Linq;
 
 namespace HelloWorldASPCore.Controllers
@@ -15,9 +15,6 @@ namespace HelloWorldASPCore.Controllers
         private readonly ILogger _logger;
         private DataBaseMemory _dataBaseMemory;
 
-        //List<UserModel> userList = new List<UserModel>();
-
-
         public UserController(ILogger<UserController> logger, DataBaseMemory dataBaseMemory)
         {
             _logger = logger;
@@ -26,20 +23,19 @@ namespace HelloWorldASPCore.Controllers
 
         // GET 
 
-        [HttpGet]
+        [HttpPost]
         [Route("User/AddUser")]
-        public UserModel AddUser(string userName, string userSecName, string userEmail, string userPassword)
+        public UserModel AddUser ([FromBody] RequestUserModel usrRqstMdl)
         {
 
-            _logger.LogTrace("PushUser");
+            _logger.LogTrace("AddUser");
 
             var userModel = new UserModel
             {
-                UserGuid = Guid.NewGuid(),
-                UserName = userName,
-                UserSecName = userSecName,
-                UserEmail = userEmail,
-                UserPassword = userPassword
+                UserName = usrRqstMdl.UserName,
+                UserSecName = usrRqstMdl.UserSecName,
+                UserEmail = usrRqstMdl.UserEmail,
+                UserPassword = usrRqstMdl.UserPassword
             };
 
             _dataBaseMemory.UserModelList.Add(userModel);
@@ -54,8 +50,8 @@ namespace HelloWorldASPCore.Controllers
         public List<UserModel> ShowAllUsers() { return _dataBaseMemory.UserModelList; }
 
         [HttpGet]
-        [Route("User/RemoveUser")]
-        public ActionResult RemoveUser(Guid userGuid)
+        [Route("User/DeleteUser")]
+        public ActionResult DeleteUser(Guid userGuid)
         {
             var removeUser = _dataBaseMemory.UserModelList.Where(x => x.UserGuid == userGuid).FirstOrDefault();
             if (removeUser != null)

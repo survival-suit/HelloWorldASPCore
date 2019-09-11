@@ -26,7 +26,7 @@ namespace HelloWorldASPCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<DataBaseMemory>(); //
+            services.AddSingleton<DataBaseMemory>(); // добавлено для хранения в памяти созданного объекта класса до конца работы контроллера
             var assemblyVersion = Assembly.GetAssembly(typeof(Startup)).GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
             services.AddSwaggerGen(c =>
             {

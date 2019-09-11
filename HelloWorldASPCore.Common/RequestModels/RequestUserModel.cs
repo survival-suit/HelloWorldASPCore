@@ -1,15 +1,8 @@
-﻿using System;
-
-namespace HelloWorldASPCore.Common.Models
+﻿//модель создана для заполнения юзеров чтобы не заполнять гуид, тк он генерится вручную
+namespace HelloWorldASPCore.Common.RequestModels
 {
-    public class UserModel
-
+    public class RequestUserModel
     {
-        /// <summary>
-        /// GUID
-        /// </summary>
-        public Guid UserGuid { get; set; }
-
         /// <summary>
         /// имя
         /// </summary>
@@ -29,11 +22,5 @@ namespace HelloWorldASPCore.Common.Models
         /// пароль
         /// </summary>
         public string UserPassword { get; set; }
-
-        public UserModel()
-        {
-            UserGuid = Guid.NewGuid();
-        }
-
     }
 }
