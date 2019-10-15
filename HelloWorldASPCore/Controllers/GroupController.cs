@@ -60,8 +60,8 @@ namespace HelloWorldASPCore.Controllers
                 //_dataBaseMemory.GroupModelList.Where(x => x.GroupGuid == groupGuid).FirstOrDefault().GroupUsers.Add(_dataBaseMemory.UserModelList.Where(x => x.UserGuid == guid).FirstOrDefault());
             }
 
-            if (writeGroup != null)
-                _dataBaseMemory.GroupModelList.Remove(writeGroup);
+            //if (writeGroup != null)
+            //    _dataBaseMemory.GroupModelList.Remove(writeGroup);
             return Ok();
         }
 
