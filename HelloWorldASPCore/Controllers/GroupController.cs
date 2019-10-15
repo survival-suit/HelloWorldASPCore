@@ -57,6 +57,7 @@ namespace HelloWorldASPCore.Controllers
             {
                 //currentUser = _dataBaseMemory.UserModelList.Where(x => x.UserGuid == guid).FirstOrDefault();
                 writeGroup.GroupUsers.Add(_dataBaseMemory.UserModelList.Where(x => x.UserGuid == guid).FirstOrDefault());
+                //_dataBaseMemory.GroupModelList.Where(x => x.GroupGuid == groupGuid).FirstOrDefault().GroupUsers.Add(_dataBaseMemory.UserModelList.Where(x => x.UserGuid == guid).FirstOrDefault());
             }
 
             if (writeGroup != null)
