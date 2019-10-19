@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using HelloWorldASPCore.Common.Services;
+using HelloWorldASPCore.Common.Models;
 
-namespace HelloWorldASPCore.Common.Models
+namespace HelloWorldASPCore.Common.ViewModels
 {
-    public class GroupModel
+    public class GroupViewModel
     {
-        /// <summary>
-        /// GUID группы
-        /// </summary>
-        public Guid GroupGuid { get; set; }
-
         /// <summary>
         /// имя группы
         /// </summary>
@@ -28,13 +25,14 @@ namespace HelloWorldASPCore.Common.Models
         /// <summary>
         /// пользователи
         /// </summary>
-        public List<UserModel> GroupUsers  { get; set; }
+        public List<UserViewModel> GroupUsers { get; set; }
 
-        //Конструктор по умолчаию создает пустой список юзеров чтобы при создании группы через АПИ он был а также GUID
-        public GroupModel()
+        public GroupViewModel(GroupModel groupModel)
         {
-            GroupUsers = new List<UserModel>();
-            GroupGuid = Guid.NewGuid();
+            GroupName = groupModel.GroupName;
+            GroupDescription = groupModel.GroupDescription;
+            GroupAdmins = groupModel.GroupAdmins;
+            GroupUsers = ListFunctions.ListUserMToListUserMV(groupModel.GroupUsers);
         }
     }
 }

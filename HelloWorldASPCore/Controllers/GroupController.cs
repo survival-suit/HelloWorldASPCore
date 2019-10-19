@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HelloWorldASPCore.Common.Models;
+using HelloWorldASPCore.Common.Services;
+using HelloWorldASPCore.Common.ViewModels;
 using HelloWorldASPCore.Common.RequestModels;
 using System.Linq;
 using System.Collections.Generic;
@@ -67,7 +69,12 @@ namespace HelloWorldASPCore.Controllers
 
         // GET       
         [HttpGet]
-        [Route("Group/ShowAllGroups")]
-        public List<GroupModel> ShowAllGroups() { return _dataBaseMemory.GroupModelList; }
+        [Route("Group/GetAllGroups")]
+        public List<GroupViewModel> GetAllGroups()
+        {
+            return ListFunctions.ListGroupMToListGroupMV(_dataBaseMemory.GroupModelList);
+
+            //return _dataBaseMemory.GroupModelList;
+        }
     }
 }

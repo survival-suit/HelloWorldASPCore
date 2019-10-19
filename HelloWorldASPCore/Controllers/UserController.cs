@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HelloWorldASPCore.Common.Models;
+using HelloWorldASPCore.Common.ViewModels;
+using HelloWorldASPCore.Common.Services;
 using HelloWorldASPCore.Common.RequestModels;
 using System.Linq;
 
@@ -21,7 +23,6 @@ namespace HelloWorldASPCore.Controllers
             _dataBaseMemory = dataBaseMemory;
         }
 
-        // GET 
 
         [HttpPost]
         [Route("User/AddUser")]
@@ -41,13 +42,16 @@ namespace HelloWorldASPCore.Controllers
             _dataBaseMemory.UserModelList.Add(userModel);
 
             return userModel;
-
         }
 
-        // GET       
+
         [HttpGet]
-        [Route("User/ShowAllUsers")]
-        public List<UserModel> ShowAllUsers() { return _dataBaseMemory.UserModelList; }
+        [Route("User/GetAllUsers")]
+        public List<UserViewModel> GetAllUsers()
+        { //return _dataBaseMemory.UserModelList; 
+           return ListFunctions.ListUserMToListUserMV(_dataBaseMemory.UserModelList);
+        }
+        
 
         [HttpGet]
         [Route("User/DeleteUser")]
