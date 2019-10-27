@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldASPCore", "HelloWorldASPCore\HelloWorldASPCore.csproj", "{11E7754B-1C2E-4AF1-B749-BA5C28016126}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldASPCore.Client", "HelloWorldASPCore.Client\HelloWorldASPCore.Client.csproj", "{7364FD31-2914-4C7E-A112-915479582597}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorldASPCore.Common", "HelloWorldASPCore.Common\HelloWorldASPCore.Common.csproj", "{E8F4F6C8-B9CD-484C-9015-D328400884F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldASPCore.Common", "HelloWorldASPCore.Common\HelloWorldASPCore.Common.csproj", "{E8F4F6C8-B9CD-484C-9015-D328400884F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
