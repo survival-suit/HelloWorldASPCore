@@ -10,7 +10,10 @@ using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Rewrite;
 using HelloWorldASPCore.Midleware;
 using HelloWorldASPCore.Common.Models;
+<<<<<<< HEAD
 using HelloWorldASPCore.Common.Context;
+=======
+>>>>>>> ce3332a83d84906b9f8f23e4545d61b9a142e73f
 using Microsoft.EntityFrameworkCore;
 
 namespace HelloWorldASPCore
@@ -47,7 +50,11 @@ namespace HelloWorldASPCore
             // получаем строку подключения из файла конфигурации
             string connection = Configuration.GetConnectionString("DefaultConnection");
             // добавляем контекст MobileContext в качестве сервиса в приложение
+<<<<<<< HEAD
             services.AddDbContext<DataBaseContext>(options =>
+=======
+            services.AddDbContext<UserContext>(options =>
+>>>>>>> ce3332a83d84906b9f8f23e4545d61b9a142e73f
                 options.UseSqlite(connection));
             services.AddMvc();
 
