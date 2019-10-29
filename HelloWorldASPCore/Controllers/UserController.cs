@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HelloWorldASPCore.Common.Models;
+using HelloWorldASPCore.Common.Context;
 using HelloWorldASPCore.Common.ViewModels;
 using HelloWorldASPCore.Common.Services;
 using HelloWorldASPCore.Common.RequestModels;
@@ -16,6 +17,7 @@ namespace HelloWorldASPCore.Controllers
     {
         private readonly ILogger _logger;
         private DataBaseMemory _dataBaseMemory;
+        private DataBaseContext db;
 
         public UserController(ILogger<UserController> logger, DataBaseMemory dataBaseMemory)
         {
@@ -40,7 +42,8 @@ namespace HelloWorldASPCore.Controllers
             };
 
             _dataBaseMemory.UserModelList.Add(userModel);
-
+            //db.UserModels.Add(userModel);
+            //db.SaveChangesAsync();
             return userModel;
         }
 
@@ -48,8 +51,10 @@ namespace HelloWorldASPCore.Controllers
         [HttpGet]
         [Route("User/GetAllUsers")]
         public List<UserViewModel> GetAllUsers()
-        { //return _dataBaseMemory.UserModelList; 
-           return ListFunctions.ListUserMToListUserMV(_dataBaseMemory.UserModelList);
+        {  
+          return ListFunctions.ListUserMToListUserMV(_dataBaseMemory.UserModelList);
+          //List<UserViewModel> userViewModel = new List<UserViewModel>();
+          //return db.UserModels.ToList(userViewModel); 
         }
         
 
