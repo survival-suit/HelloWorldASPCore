@@ -16,13 +16,13 @@ namespace HelloWorldASPCore.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger _logger;
-        private DataBaseMemory _dataBaseMemory;
+        //private DataBaseMemory _dataBaseMemory;
         private DataBaseContext db;
 
         public UserController(ILogger<UserController> logger, DataBaseMemory dataBaseMemory)
         {
             _logger = logger;
-            _dataBaseMemory = dataBaseMemory;
+            //_dataBaseMemory = dataBaseMemory;
         }
 
 
@@ -41,9 +41,9 @@ namespace HelloWorldASPCore.Controllers
                 UserPassword = usrRqstMdl.UserPassword
             };
 
-            _dataBaseMemory.UserModelList.Add(userModel);
-            //db.UserModels.Add(userModel);
-            //db.SaveChangesAsync();
+            //_dataBaseMemory.UserModelList.Add(userModel);
+            db.UserModels.Add(userModel);
+            db.SaveChanges();
             return userModel;
         }
 
@@ -51,20 +51,31 @@ namespace HelloWorldASPCore.Controllers
         [HttpGet]
         [Route("User/GetAllUsers")]
         public List<UserViewModel> GetAllUsers()
-        {  
-          return ListFunctions.ListUserMToListUserMV(_dataBaseMemory.UserModelList);
-          //List<UserViewModel> userViewModel = new List<UserViewModel>();
-          //return db.UserModels.ToList(userViewModel); 
+        {
+            List<UserModel> userModel = new List<UserModel>();
+            
+            foreach (var user in db.UserModels)
+            {
+                userModel.Add(user);
+            }
+            return ListFunctions.ListUserMToListUserMV(userModel);
+            //return ListFunctions.ListUserMToListUserMV(_dataBaseMemory.UserModelList);
         }
-        
+
 
         [HttpGet]
         [Route("User/DeleteUser")]
         public ActionResult DeleteUser(Guid userGuid)
         {
+            /*
             var removeUser = _dataBaseMemory.UserModelList.Where(x => x.UserGuid == userGuid).FirstOrDefault();
             if (removeUser != null)
                 _dataBaseMemory.UserModelList.Remove(removeUser);
+            return Ok();
+            */
+            var removeUser = db.UserModels.FirstOrDefault(x => x.UserGuid == userGuid);
+            if (removeUser != null)
+                db.UserModels.Remove (removeUser);
             return Ok();
         }
 
