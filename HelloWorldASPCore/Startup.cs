@@ -44,12 +44,6 @@ namespace HelloWorldASPCore
                 c.IncludeXmlComments(xmlPath);
             });
 
-            // получаем строку подключения из файла конфигурации
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-            // добавляем контекст в качестве сервиса в приложение
-
-            services.AddDbContext<DataBaseContext>(options =>
-                options.UseSqlite(connection));
             //services.AddControllersWithViews();
             services.AddMvcCore();
         }

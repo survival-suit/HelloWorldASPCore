@@ -16,8 +16,10 @@ namespace HelloWorldASPCore.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger _logger;
+
+        //Ты объявил переменную, но она никак не была создана, но в данном случае надо через юзинг каждый раз делать
+        //Вероятно ты немного запутался в DI и после обявления думал что она как то создаться, но как то создается через конструторы
         //private DataBaseMemory _dataBaseMemory;
-        private DataBaseContext db;
 
         public UserController(ILogger<UserController> logger, DataBaseMemory dataBaseMemory)
         {
@@ -41,9 +43,12 @@ namespace HelloWorldASPCore.Controllers
                 UserPassword = usrRqstMdl.UserPassword
             };
 
-            //_dataBaseMemory.UserModelList.Add(userModel);
-            db.UserModels.Add(userModel);
-            db.SaveChanges();
+            using (var contexc = new DataBaseContext())
+            {
+                contexc.UserModels.Add(userModel);
+                contexc.SaveChanges();
+            }
+
             return userModel;
         }
 
@@ -53,13 +58,14 @@ namespace HelloWorldASPCore.Controllers
         public List<UserViewModel> GetAllUsers()
         {
             List<UserModel> userModel = new List<UserModel>();
-            
-            foreach (var user in db.UserModels)
-            {
-                userModel.Add(user);
-            }
-            return ListFunctions.ListUserMToListUserMV(userModel);
+
+            //foreach (var user in db.UserModels)
+            //{
+            //    userModel.Add(user);
+            //}
+            //return ListFunctions.ListUserMToListUserMV(userModel);
             //return ListFunctions.ListUserMToListUserMV(_dataBaseMemory.UserModelList);
+            throw new NotImplementedException();
         }
 
 
@@ -73,9 +79,9 @@ namespace HelloWorldASPCore.Controllers
                 _dataBaseMemory.UserModelList.Remove(removeUser);
             return Ok();
             */
-            var removeUser = db.UserModels.FirstOrDefault(x => x.UserGuid == userGuid);
-            if (removeUser != null)
-                db.UserModels.Remove (removeUser);
+            //var removeUser = db.UserModels.FirstOrDefault(x => x.UserGuid == userGuid);
+            //if (removeUser != null)
+            //    db.UserModels.Remove (removeUser);
             return Ok();
         }
 
