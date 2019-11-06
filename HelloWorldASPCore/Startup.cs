@@ -50,8 +50,8 @@ namespace HelloWorldASPCore
 
             services.AddDbContext<DataBaseContext>(options =>
                 options.UseSqlite(connection));
-            services.AddMvc();
-
+            //services.AddControllersWithViews();
+            services.AddMvcCore();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
