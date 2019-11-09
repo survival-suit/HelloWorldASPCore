@@ -18,7 +18,7 @@ namespace HelloWorldASPCore.Common.Context
             var optionsBuilder = new DbContextOptionsBuilder<DataBaseContext>();
             {
                 var options = optionsBuilder
-                    .UseSqlite("Data Source=hzDataBase.db")
+                    .UseSqlite("Data Source=HelloWorldASPCoreDB.db")
                     .Options;
                 return options;
             }

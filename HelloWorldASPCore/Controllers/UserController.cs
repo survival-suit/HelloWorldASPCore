@@ -43,10 +43,10 @@ namespace HelloWorldASPCore.Controllers
                 UserPassword = usrRqstMdl.UserPassword
             };
 
-            using (var contexc = new DataBaseContext())
+            using (var context = new DataBaseContext())
             {
-                contexc.UserModels.Add(userModel);
-                contexc.SaveChanges();
+                context.UserModels.Add(userModel);
+                context.SaveChanges();
             }
 
             return userModel;
@@ -58,12 +58,17 @@ namespace HelloWorldASPCore.Controllers
         public List<UserViewModel> GetAllUsers()
         {
             List<UserModel> userModel = new List<UserModel>();
+            using (var context = new DataBaseContext())
+            {
+                //context.UserModels.Add(userModel);
+                //context.SaveChanges();
 
-            //foreach (var user in db.UserModels)
-            //{
-            //    userModel.Add(user);
-            //}
-            //return ListFunctions.ListUserMToListUserMV(userModel);
+                foreach (var user in context.UserModels)
+                {
+                    userModel.Add(user);
+                }
+            }
+            return ListFunctions.ListUserMToListUserMV(userModel);
             //return ListFunctions.ListUserMToListUserMV(_dataBaseMemory.UserModelList);
             throw new NotImplementedException();
         }
@@ -79,9 +84,14 @@ namespace HelloWorldASPCore.Controllers
                 _dataBaseMemory.UserModelList.Remove(removeUser);
             return Ok();
             */
-            //var removeUser = db.UserModels.FirstOrDefault(x => x.UserGuid == userGuid);
-            //if (removeUser != null)
-            //    db.UserModels.Remove (removeUser);
+            using (var context = new DataBaseContext())
+            {
+                var removeUser = context.UserModels.FirstOrDefault(x => x.UserGuid == userGuid);
+                if (removeUser != null)
+                    context.UserModels.Remove(removeUser);
+                context.SaveChanges();
+            }
+            
             return Ok();
         }
 

@@ -14,13 +14,10 @@ namespace HelloWorldASPCore.Controllers
     public class GroupController : ControllerBase
     {
         private readonly ILogger _logger;
-        private DataBaseMemory _dataBaseMemory;
-        private DataBaseContext db;
 
         public GroupController(ILogger<GroupController> logger, DataBaseMemory dataBaseMemory)
         {
             _logger = logger;
-            _dataBaseMemory = dataBaseMemory;
         }
 
         [HttpPost]
@@ -35,10 +32,12 @@ namespace HelloWorldASPCore.Controllers
                 GroupDescription = grpRqstMdl.GroupDescription,
                 GroupAdmins = grpRqstMdl.GroupAdmins
             };
-
-            //_dataBaseMemory.GroupModelList.Add(groupModel);
-            db.GroupModels.Add(groupModel);
-            db.SaveChanges();
+          
+            using (var context = new DataBaseContext())
+            {
+                context.GroupModels.Add(groupModel);
+                context.SaveChanges();
+            }
 
             return groupModel;
         }
@@ -47,15 +46,14 @@ namespace HelloWorldASPCore.Controllers
         [Route("Group/DeleteGroup")]
         public ActionResult DeleteGroup(Guid groupGuid)
         {
-            /*
-            var removeGroup = _dataBaseMemory.GroupModelList.Where(x => x.GroupGuid == groupGuid).FirstOrDefault();
-            if (removeGroup != null)
-                _dataBaseMemory.GroupModelList.Remove(removeGroup);
-            return Ok();
-            */
-            var removeGroup = db.GroupModels.FirstOrDefault(x => x.GroupGuid == groupGuid);
-            if (removeGroup != null)
-                db.GroupModels.Remove(removeGroup);
+            using (var context = new DataBaseContext())
+            {
+                var removeGroup = context.GroupModels.FirstOrDefault(x => x.GroupGuid == groupGuid);
+                if (removeGroup != null)
+                    context.GroupModels.Remove(removeGroup);
+                context.SaveChanges();
+            }
+
             return Ok();
         }
 
@@ -63,13 +61,15 @@ namespace HelloWorldASPCore.Controllers
         [Route("Group/AddUsersToGroup")]
         public ActionResult AddUsersToGroup (Guid groupGuid, List<Guid> userGuidList)
         {
-            //var writeGroup = _dataBaseMemory.GroupModelList.Where(x => x.GroupGuid == groupGuid).FirstOrDefault();
-            var writeGroup = db.GroupModels.FirstOrDefault(x => x.GroupGuid == groupGuid);
-
-            foreach (Guid guid in userGuidList)
+            using (var context = new DataBaseContext())
             {
-                //writeGroup.GroupUsers.Add(_dataBaseMemory.UserModelList.Where(x => x.UserGuid == guid).FirstOrDefault());  
-                writeGroup.GroupUsers.Add(db.UserModels.FirstOrDefault(x => x.UserGuid == guid));
+                var writeGroup = context.GroupModels.FirstOrDefault(x => x.GroupGuid == groupGuid);
+
+                foreach (Guid guid in userGuidList)
+                {
+                    writeGroup.GroupUsers.Add(context.UserModels.FirstOrDefault(x => x.UserGuid == guid));
+                }
+                context.SaveChanges();
             }
 
             return Ok();
@@ -80,12 +80,14 @@ namespace HelloWorldASPCore.Controllers
         [Route("Group/GetAllGroups")]
         public List<GroupViewModel> GetAllGroups()
         {
-            //return ListFunctions.ListGroupMToListGroupMV(_dataBaseMemory.GroupModelList);
             List<GroupModel> groupModel = new List<GroupModel>();
 
-            foreach (var group in db.GroupModels)
+            using (var context = new DataBaseContext())
             {
-                groupModel.Add(group);
+                foreach (var group in context.GroupModels)
+                {
+                    groupModel.Add(group);
+                }
             }
             return ListFunctions.ListGroupMToListGroupMV(groupModel);
         }

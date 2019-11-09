@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HelloWorldASPCore.Common.Models
 {
@@ -8,6 +9,7 @@ namespace HelloWorldASPCore.Common.Models
         /// <summary>
         /// GUID группы
         /// </summary>
+        [Key] 
         public Guid GroupGuid { get; set; }
 
         /// <summary>

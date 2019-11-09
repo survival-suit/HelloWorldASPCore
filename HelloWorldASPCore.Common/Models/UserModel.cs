@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace HelloWorldASPCore.Common.Models
 {
@@ -8,6 +9,7 @@ namespace HelloWorldASPCore.Common.Models
         /// <summary>
         /// GUID
         /// </summary>
+        [Key]
         public Guid UserGuid { get; set; }
 
         /// <summary>
